@@ -8,9 +8,10 @@ function spawnPromise(command, args) {
     let stderr = '';
     child.stdout.on('data', (data) => {
       stdout += data;
+      resolve(stdout);
     });
     child.stderr.on('data', (data) => {
-      stderr
+      reject(data);
     });
     child.on('close', (code) => {
       if (code === 0) {
